@@ -1,0 +1,128 @@
+.reproductor-flotante {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff; /* Fondo blanco para buen contraste */
+  color: #333; /* Color de texto oscuro */
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px 10px 0 0; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el reproductor */
+}
+
+.informacion-reproductor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.portada-reproductor {
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.titulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Título oscuro */
+  margin-bottom: 5px;
+}
+
+.artista {
+  font-size: 14px;
+  color: #666; /* Artista en gris claro */
+}
+
+.genero {
+  font-size: 12px;
+  color: #999; /* Género en gris más suave */
+}
+
+.cerrar {
+  background: transparent;
+  border: none;
+  color: #333; /* Color del botón de cierre */
+  font-size: 30px;
+  cursor: pointer;
+  align-self: flex-end;
+  padding: 5px;
+}
+
+.cerrar span {
+  font-size: 30px; /* Aumentamos el tamaño de la X */
+}
+
+.audio-control {
+  width: 100%;
+  margin-top: 15px;
+}
+
+audio {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+audio::-webkit-media-controls {
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #1DB954; /* Botón verde como Spotify */
+  border-radius: 50%;
+  padding: 10px;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  background-color: #1DB954;
+  border-radius: 50px;
+}
+
+audio::-webkit-media-controls-progress-bar {
+  background: #1DB954; /* Barra de progreso verde */
+  border-radius: 50px;
+}
+
+audio::-webkit-media-controls-mute-button {
+  background-color: transparent;
+  color: #1DB954;
+  font-size: 25px;
+}
+
+audio[controls] {
+  controlsList: 'nodownload nofullscreen noremoteplayback'; /* Eliminar la opción de descarga y fullscreen */
+  -webkit-appearance: none; /* Quitar el estilo predeterminado del navegador */
+  appearance: none; /* Quitar el estilo predeterminado */
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+audio::-webkit-media-controls-playback-rate-button {
+  display: none; /* Eliminar botón de velocidad */
+}
+
+audio::-webkit-media-controls-download-button {
+  display: none; /* Eliminar botón de descarga */
+}
+
+audio::-webkit-media-controls-enclosure {
+  background: transparent;
+}
