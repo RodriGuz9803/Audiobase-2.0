@@ -1,0 +1,94 @@
+/* Estilo principal de la página */
+.login-container {
+  background: linear-gradient(120deg, #1db954, #191414); /* Fondo verde similar a Spotify */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  padding: 10px; /* Ajuste en el padding */
+}
+
+/* Estilo de la tarjeta de login */
+.login-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px; /* Reducir el padding */
+  border-radius: 15px; /* Hacer el borde un poco más suave */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Aumentar el máximo a 400px */
+  margin: 0 auto; /* Centrado en la pantalla */
+}
+
+/* Título */
+.login-title {
+  font-size: 1.6rem; /* Reducir tamaño de fuente del título */
+  font-weight: bold;
+  color: #191414;
+  text-align: center;
+  margin-bottom: 20px; /* Ajustar espacio inferior */
+}
+
+/* Campos de formulario */
+.form-input {
+  border-radius: 8px; /* Borde más pequeño */
+  border: 1px solid #ddd;
+  padding: 10px; /* Mejorar el padding */
+  margin-bottom: 15px; /* Espaciado entre los campos */
+  font-size: 1rem; /* Mejor tamaño de fuente */
+}
+
+/* Botón de login */
+.login-btn {
+  background-color: #1db954; /* Color verde de Spotify */
+  color: white;
+  border: none;
+  padding: 12px; /* Aumentar padding para mayor clicabilidad */
+  font-size: 1rem; /* Ajustar tamaño de fuente */
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-bottom: 15px; /* Ajustar margen inferior */
+  width: 100%; /* Botón que ocupe todo el ancho */
+}
+
+.login-btn:hover {
+  background-color: #1ed760; /* Un verde más claro */
+  cursor: pointer;
+}
+
+/* Estilo para cambiar entre formularios */
+.switch-btn {
+  font-size: 0.9rem; /* Ajustar tamaño */
+  color: #1db954;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.switch-btn:hover {
+  text-decoration: underline;
+}
+
+/* Error de validación */
+.alert {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 15px; /* Reducir margen */
+}
+
+/* Estilo del separador entre los formularios */
+hr {
+  border: 1px solid #ddd;
+  margin: 15px 0; /* Ajustar margen */
+}
+
+/* Adaptación móvil */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 15px; /* Reducir padding en móviles */
+    max-width: 90%; /* Asegurar que la tarjeta ocupe el 90% del ancho */
+  }
+  .login-title {
+    font-size: 1.5rem; /* Reducir título para móviles */
+  }
+}

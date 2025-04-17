@@ -1,0 +1,50 @@
+body {
+    background-color: #121212;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .contenedor-canciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .cancion {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+  }
+  
+  .cancion:hover {
+    transform: scale(1.03);
+  }
+  
+  .portada {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .info {
+    padding: 12px;
+    color: white;
+  }
+  
+  .titulo {
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  .genero {
+    font-size: 0.9em;
+    color: #b3b3b3;
+  }
+  
+  .anio {
+    font-size: 0.8em;
+    color: #888;
+  }
+  

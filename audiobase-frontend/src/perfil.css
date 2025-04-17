@@ -1,0 +1,118 @@
+/* Estilo general mejorado */
+.perfil-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  color: #f0f0f0;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.perfil-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.perfil-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 15px;
+  border: 3px solid #ffffff;
+}
+
+.perfil-info p {
+  margin: 5px 0;
+  font-size: 1.1rem;
+}
+
+.edit-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Modal flotante */
+.edit-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+  color: #f0f0f0;
+}
+
+/* Fondo oscuro detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Botón para cerrar */
+.close-btn {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+/* Secciones del formulario */
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* Campos de entrada */
+.input-field {
+  width: 100%;
+  margin: 8px 0 15px 0;
+  padding: 10px;
+  background-color: #1c1c1c;
+  border: 1px solid #444;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Botón de enviar */
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}

@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma-client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cancion {
+  id                Int                 @id @default(autoincrement())
+  titulo            String
+  fechaLanzamiento  DateTime?
+  generoId          Int?
+  restriccionEdad   Boolean             @default(false)
+  portada           String?
+  anioLanzamiento   Int?                @map("anioLanzamiento")
+  albumId           Int?
+  album             album?              @relation(fields: [albumId], references: [id])
+  genero            genero?             @relation(fields: [generoId], references: [id])
+  usuarioscanciones usuarioscanciones[]
+  playlists         playlist[]          @relation("CancionesEnPlaylists")
+  comentarios       comentario[]
+}
+
+model usuario {
+  id                Int                 @id @default(autoincrement())
+  email             String              @unique(map: "Usuario_email_key")
+  password          String
+  nombre            String
+  direccion         String?
+  estado            String?
+  fechaNacimiento   DateTime?
+  nacionalidad      String?
+  sexo              String?
+  apodo             String?
+  foto              String?
+  rolId             Int                 @default(3)
+  rol               rol                 @relation(fields: [rolId], references: [id])
+  anioInicioCarrera Int?                @map("anioInicioCarrera")
+  usuarioscanciones usuarioscanciones[]
+  playlists         playlist[]
+  comentarios       comentario[]
+}
+
+model usuarioscanciones {
+  id        Int     @id @default(autoincrement())
+  usuarioId Int
+  cancionId Int
+  cancion   cancion @relation(fields: [cancionId], references: [id], map: "UsuariosCanciones_cancionId_fkey")
+  usuario   usuario @relation(fields: [usuarioId], references: [id], map: "UsuariosCanciones_usuarioId_fkey")
+
+  @@index([cancionId], map: "UsuariosCanciones_cancionId_fkey")
+  @@index([usuarioId], map: "UsuariosCanciones_usuarioId_fkey")
+}
+
+model rol {
+  id          Int       @id @default(autoincrement())
+  nombre      String
+  descripcion String?
+  usuarios    usuario[]
+}
+
+model album {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  anio      Int
+  portada   String?
+  canciones cancion[]
+}
+
+model genero {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  canciones cancion[]
+}
+
+model playlist {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  usuarioId Int
+  usuario   usuario   @relation(fields: [usuarioId], references: [id])
+  canciones cancion[] @relation("CancionesEnPlaylists")
+}
+
+model comentario {
+  id        Int      @id @default(autoincrement())
+  texto     String
+  fecha     DateTime @default(now())
+  usuarioId Int
+  cancionId Int
+  usuario   usuario  @relation(fields: [usuarioId], references: [id])
+  cancion   cancion  @relation(fields: [cancionId], references: [id])
+}
