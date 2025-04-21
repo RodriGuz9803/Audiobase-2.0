@@ -6,6 +6,8 @@ import Canciones from './cancionesusuario';  // Asegúrate de que la ruta esté 
 
 const Perfil = () => {
   const [id] = useState(() => localStorage.getItem('id'));
+  const [rolId, setRolId] = useState(null);
+
   const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -317,8 +319,9 @@ const Perfil = () => {
       )}
 
 
-
-      <Canciones />
+      {usuario.rolId === "2" &&
+        <Canciones />
+      }
 
     </div>
 
