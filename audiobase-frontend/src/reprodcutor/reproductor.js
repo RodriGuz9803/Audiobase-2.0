@@ -2,7 +2,9 @@ import React from 'react';
 import './Reproductor.css';
 
 const Reproductor = ({ cancion, onClose }) => {
-  const audioUrl = `http://localhost/Audiobase/audionase_backend_php/${cancion.archivo}`;
+  const audioUrl = `http://localhost/Audiobase/audionase_backend_php/musica/${cancion.archivo}`;
+
+  console.log(audioUrl);
 
   return (
     <div className="reproductor-flotante">
@@ -11,7 +13,7 @@ const Reproductor = ({ cancion, onClose }) => {
       </button>
       <div className="informacion-reproductor">
         <img 
-          src={`http://localhost/Audiobase/audionase_backend_php/${cancion.portada}`} 
+          src={`http://localhost/Audiobase/audionase_backend_php/fotos/${cancion.portada}`} 
           alt={cancion.titulo} 
           className="portada-reproductor" 
         />

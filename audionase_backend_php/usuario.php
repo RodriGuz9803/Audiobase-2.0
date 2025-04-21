@@ -33,7 +33,9 @@ class Usuario
         id, 
         nombre, 
         email, 
-        fechaNacimiento, 
+        DATE_FORMAT(fechaNacimiento, '%Y-%m-%d') AS fechaNacimiento,  -- Formateamos la fecha
+
+         
         sexo, 
         nacionalidad, 
         direccion, 
@@ -97,11 +99,12 @@ class Usuario
         $query = "SELECT 
                         c.id, 
                         c.titulo, 
-                        c.fechaLanzamiento, 
+                        DATE_FORMAT(c.fechaLanzamiento, '%Y-%m-%d') AS fechaLanzamiento,  -- Formateamos la fecha
                         c.generoId, 
                         c.restriccionEdad, 
                         c.portada, 
                         c.anioLanzamiento, 
+                        c.archivo,
                         c.albumId,
                         gen.nombre
                   FROM cancion c
@@ -109,24 +112,31 @@ class Usuario
                   INNER JOIN genero gen ON  c.generoId=gen.id
                   WHERE uc.usuarioId = :usuarioId";
 
+
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':usuarioId', $usuarioId);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Devuelve todas las canciones asociadas al usuario
     }
-
 }
 
 
-// Lógica para manejar las solicitudes GET y POST
 
+//logica para las canciones 
+
+
+
+
+// Lógica para manejar las solicitudes GET y POST
 // ✅ Primero verificamos si se están pidiendo canciones
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && isset($_GET['tipo']) && $_GET['tipo'] == 'canciones') {
     $usuario = new Usuario();
     $usuarioId = $_GET['id'];
     $canciones = $usuario->obtenerCanciones($usuarioId);
-
+    if ($canciones && isset($canciones['fechaLanzamiento'])) {
+        $canciones['fechaLanzamiento'] = date('Y-m-d', strtotime($canciones['fechaLanzamiento']));
+    }
     if ($canciones) {
         echo json_encode($canciones);
     } else {
@@ -141,9 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
     $datosUsuario = $usuario->obtenerDatos($id);
 
-    if ($datosUsuario && isset($datosUsuario['fechaNacimiento'])) {
-        $datosUsuario['fechaNacimiento'] = date('Y-m-d', strtotime($datosUsuario['fechaNacimiento']));
-    }
+
 
     if ($datosUsuario) {
         echo json_encode($datosUsuario);
@@ -161,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
 
 
-    
+
 
     // Verificar si se subió una foto
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == UPLOAD_ERR_OK) {
@@ -227,11 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
     // Respuesta JSON de éxito o error
     if ($resultado) {
         echo json_encode(['success' => true]);
-    
     } else {
         echo json_encode(['success' => false, 'error' => 'No se pudo actualizar']);
     }
 }
-
-
-
