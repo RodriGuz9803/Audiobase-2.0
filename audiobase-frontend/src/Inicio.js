@@ -5,15 +5,31 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Sidebar from './reprodcutor/navbar';
+
 
 const Inicio = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [nombreUsuario, setNombreUsuario] = useState('');
   const [rolId, setRolId] = useState(null);
-const storedFoto = localStorage.getItem('foto');
-    const fotousuario = storedFoto && storedFoto.trim()
-      ? storedFoto
-      : 'https://randomuser.me/api/portraits/men/75.jpg';  const navigate = useNavigate();
+  const storedFoto = localStorage.getItem('foto');
+  const fotousuario = storedFoto && storedFoto.trim()
+    ? storedFoto
+    : 'https://randomuser.me/api/portraits/men/75.jpg';
+  const navigate = useNavigate();
+
+  // Recuperar el estado del Sidebar desde localStorage
+  useEffect(() => {
+    const storedSidebarState = localStorage.getItem('sidebarState');
+    if (storedSidebarState) {
+      setShowSidebar(JSON.parse(storedSidebarState));
+    }
+  }, []);
+
+  // Guardar el estado del Sidebar en localStorage
+  useEffect(() => {
+    localStorage.setItem('sidebarState', JSON.stringify(showSidebar));
+  }, [showSidebar]);
 
   const handleSidebarToggle = () => setShowSidebar(!showSidebar);
 
@@ -32,75 +48,7 @@ const storedFoto = localStorage.getItem('foto');
 
   return (
     <Container fluid style={{ backgroundColor: '#121212', minHeight: '100vh' }}>
-      <Offcanvas
-        show={showSidebar}
-        onHide={handleSidebarToggle}
-        placement="start"
-        style={{ backgroundColor: '#181818' }}
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title style={{ color: '#fff' }}>Panel de Usuario</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <div className="text-center mb-4">
-            <img
-              src={fotousuario}
-              alt="Perfil"
-              className="rounded-circle"
-              style={{ width: '80px', height: '80px', objectFit: 'cover' }}
-            />
-            <h5 className="text-white mt-2">{nombreUsuario || 'Juan Pérez'}</h5>
-            <Link to="/Perfil-crud" style={{ color: '#ddd', textDecoration: 'none' }}>Ver Perfil</Link>
-          </div>
-
-          <Nav className="flex-column">
-            <Nav.Link as={Link} to="/" style={{ color: '#fff' }}>Inicio</Nav.Link>
-            <Nav.Link as={Link} to="#">Géneros</Nav.Link>
-            <Nav.Link as={Link} to="#">Artistas</Nav.Link>
-            <Nav.Link as={Link} to="#">Música</Nav.Link>
-
-            {/* Mostrar solo si el rol es administrador */}
-            {rolId === 1 && (
-              <NavDropdown
-                title={<span style={{ color: '#00BFFF' }}>Panel de Administrador</span>}
-                id="admin-nav-dropdown"
-                menuVariant="dark"
-                style={{ backgroundColor: '#181818' }}
-              >
-                <NavDropdown.Item
-                  as={Link}
-                  to="#"
-                  style={{ backgroundColor: '#181818', color: '#00BFFF' }}
-                >
-                  Ver Artistas
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="#"
-                  style={{ backgroundColor: '#181818', color: '#00BFFF' }}
-                >
-                  Ver Canciones
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="#"
-                  style={{ backgroundColor: '#181818', color: '#00BFFF' }}
-                >
-                  Ver Usuarios
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
-          </Nav>
-        </Offcanvas.Body>
-      </Offcanvas>
-
-      <Button
-        variant="outline-light"
-        onClick={handleSidebarToggle}
-        style={{ position: 'absolute', top: '20px', left: '20px' }}
-      >
-        ☰
-      </Button>
+     <Sidebar/>
 
       <div style={{ paddingTop: '60px' }}>
         <Row className="text-center text-white py-5" style={{ marginTop: '20px' }}>
@@ -127,7 +75,9 @@ const storedFoto = localStorage.getItem('foto');
               <Card.Body>
                 <Card.Title>Música</Card.Title>
                 <Card.Text>Descubre nuevas canciones y álbumes.</Card.Text>
-                <Button variant="success" href="#">Escuchar Música</Button>
+                <Link to="/canciones">
+                  <Button variant="success">Escuchar Música</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>

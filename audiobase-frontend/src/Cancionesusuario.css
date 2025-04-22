@@ -154,4 +154,9 @@ body {
   .acciones-formulario button:hover {
     background-color: #095f87;
   }
-  
+  .cancion .info .titulo {
+    color: #ffffff;  /* Blanco fuerte */
+    font-size: 16px;  /* Tamaño de fuente ajustable */
+    font-weight: bold;  /* Hacer el texto más fuerte si lo prefieres */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);  /* Sombra de texto para darle más contraste */
+}

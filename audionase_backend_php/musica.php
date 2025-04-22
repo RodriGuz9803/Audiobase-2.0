@@ -18,6 +18,37 @@ include_once 'config/db.php';
 
 class Musica
 {
+
+    public function obtenerCanciones()
+    {
+        global $pdo; // Usamos la conexión global
+    
+        // Query para obtener todas las canciones
+        $query = "SELECT 
+                    c.id, 
+                    c.titulo, 
+                    DATE_FORMAT(c.fechaLanzamiento, '%Y-%m-%d') AS fechaLanzamiento,  -- Formateamos la fecha
+                    c.generoId, 
+                    c.restriccionEdad, 
+                    c.portada, 
+                    c.anioLanzamiento, 
+                    c.archivo,
+                    c.albumId,
+                    gen.nombre,
+                    u.apodo
+                  FROM cancion c
+                  INNER JOIN genero gen ON c.generoId = gen.id
+                  INNER JOIN usuarioscanciones uc ON c.id = uc.cancionId
+                  INNER JOIN usuario u ON u.id = uc.usuarioId";
+    
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Devuelve todas las canciones
+    }
+    
+
+
     function editarCancion($id, $data)
     {
         global $pdo;
@@ -169,5 +200,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($musica->agregarCancion($_POST));
     } else {
         echo json_encode(["success" => false, "mensaje" => "Tipo de operación inválido"]);
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // Creamos una instancia de la clase Musica
+    $musica = new Musica();
+    
+    // Llamamos al método obtenerCanciones sin usuarioId
+    $canciones = $musica->obtenerCanciones();
+
+    if ($canciones) {
+        echo json_encode($canciones);  // Devolvemos las canciones en formato JSON
+    } else {
+        echo json_encode(['error' => 'No se encontraron canciones']);  // En caso de que no se encuentren canciones
     }
 }

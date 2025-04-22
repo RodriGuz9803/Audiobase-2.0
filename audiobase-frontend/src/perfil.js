@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
 import './perfil.css';
 import Canciones from './cancionesusuario';  // Asegúrate de que la ruta esté correcta
+import Sidebar from './reprodcutor/navbar';
 
 
 const Perfil = () => {
@@ -126,6 +127,11 @@ const Perfil = () => {
 
 
   return (
+<>
+    <div className="sidebar">
+      <Sidebar/>
+    </div>
+
     <div className="perfil-container">
       <img src={fotoUsuario} alt={usuario.nombre} className="perfil-photo" />
       <h1 className="perfil-title">{usuario.nombre}</h1>
@@ -142,9 +148,6 @@ const Perfil = () => {
       </div>
 
       <button className="edit-btn" onClick={() => setIsEditing(true)}>Editar</button>
-
-
-
 
       {isEditing && (
         <>
@@ -328,7 +331,7 @@ const Perfil = () => {
 
 
 
-
+    </>
 
   );
 };

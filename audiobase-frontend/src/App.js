@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import './App.css';
 import Inicio_ from './Inicio';
 import Perfil_ from './perfil';
+import Canciones_ from './Canciones';
+import Generos_ from './generos';
 
 // Componente Dashboard
 const Dashboard = () => {
@@ -19,6 +21,14 @@ const Inicio = () => {
 const Perfil = () => {
   return <Perfil_ />;
 };
+
+const Canciones=()=>{
+  return <Canciones_/>;
+}
+
+const Generos=()=>{
+  return <Generos_/>;
+}
 
 const App = () => {
   const [email, setEmail] = useState('');
@@ -321,6 +331,9 @@ const Root = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Inicio-crud" element={<Inicio />} />
         <Route path="/Perfil-crud" element={<Perfil />} />
+        <Route path="/canciones" element={<Canciones />} />
+        <Route path="/generos" element={<Generos />} />
+
       </Routes>
     </Router>
   );

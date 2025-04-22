@@ -1,0 +1,27 @@
+.contenedor-generos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .tarjeta-genero {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+  }
+  
+  .tarjeta-genero:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .nombre-genero {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
