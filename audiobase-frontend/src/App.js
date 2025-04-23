@@ -7,6 +7,7 @@ import Inicio_ from './Inicio';
 import Perfil_ from './perfil';
 import Canciones_ from './Canciones';
 import Generos_ from './generos';
+import Canciones_generos_ from './CancionesGeneros';
 
 // Componente Dashboard
 const Dashboard = () => {
@@ -28,6 +29,11 @@ const Canciones=()=>{
 
 const Generos=()=>{
   return <Generos_/>;
+}
+
+const Canciones_generos=()=>{
+
+  return <Canciones_generos_/>
 }
 
 const App = () => {
@@ -333,6 +339,8 @@ const Root = () => {
         <Route path="/Perfil-crud" element={<Perfil />} />
         <Route path="/canciones" element={<Canciones />} />
         <Route path="/generos" element={<Generos />} />
+        <Route path="/generos-canciones/:id" element={<Canciones_generos />} />
+        
 
       </Routes>
     </Router>
