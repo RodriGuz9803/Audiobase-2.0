@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Audiobase</string>
-    <string name="title_activity_main">Audiobase</string>
-    <string name="package_name">com.audiobase.audiobase</string>
-    <string name="custom_url_scheme">com.audiobase.audiobase</string>
-</resources>
